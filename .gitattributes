@@ -1,0 +1,2 @@
+foods.db filter=lfs diff=lfs merge=lfs -text
+scripts/foods_import.json filter=lfs diff=lfs merge=lfs -text
