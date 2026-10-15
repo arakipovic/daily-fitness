@@ -1,0 +1,1592 @@
+{
+  "programs": [
+    {
+      "id": "ac8-p1-3day",
+      "name": "Foundation 3×",
+      "daysPerWeek": 3,
+      "title": "8 Weeks · Full Body",
+      "weeks": 8,
+      "days": [
+        {
+          "number": 1,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Back Squat",
+              "sets": 3,
+              "reps": "8-10",
+              "restSeconds": 180,
+              "rir": "2",
+              "notes": "Full depth, knees track toes. Focus on controlled descent.",
+              "alternatives": [
+                "Leg Press",
+                "Goblet Squat",
+                "DB Split Squat",
+                "Band Squat"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Barbell Row",
+              "sets": 3,
+              "reps": "8-10",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Hinge at hips, pull bar to lower chest. Keep back flat.",
+              "alternatives": [
+                "DB Row",
+                "Cable Row",
+                "Band Row",
+                "Inverted Row"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "DB Bench Press",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Lower DBs to chest level, press straight up.",
+              "alternatives": [
+                "Barbell Bench Press",
+                "Push-Up",
+                "Band Chest Press",
+                "Machine Chest Press"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Romanian Deadlift",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Soft knees, push hips back. Feel stretch in hamstrings.",
+              "alternatives": [
+                "DB Romanian Deadlift",
+                "Band Pull-Through",
+                "Leg Curl",
+                "Good Morning"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Lateral Raise",
+              "sets": 3,
+              "reps": "15-20",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Lead with elbows, slight forward lean.",
+              "alternatives": [
+                "DB Lateral Raise",
+                "Band Lateral Raise",
+                "Cable Lateral Raise"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Bicep Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full range of motion, don't swing.",
+              "alternatives": [
+                "DB Curl",
+                "Band Curl",
+                "Hammer Curl",
+                "Cable Curl"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Feet shoulder-width, lower until knees near chest.",
+              "alternatives": [
+                "Back Squat",
+                "Goblet Squat",
+                "DB Split Squat",
+                "Band Squat"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Lat Pulldown",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Pull bar to upper chest, drive elbows down.",
+              "alternatives": [
+                "DB Pullover",
+                "Band Pulldown",
+                "Inverted Row",
+                "Cable Row"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "Incline DB Press",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "30-45 degree incline, press to the ceiling.",
+              "alternatives": [
+                "Incline Barbell Press",
+                "Band Press",
+                "Push-Up",
+                "Machine Incline Press"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Hip Thrust",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Drive hips up until body is straight. Squeeze glutes at top.",
+              "alternatives": [
+                "DB Hip Thrust",
+                "Band Hip Thrust",
+                "Glute Bridge",
+                "Cable Pull-Through"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Overhead Press",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Press directly overhead, keep core braced.",
+              "alternatives": [
+                "DB Overhead Press",
+                "Band Overhead Press",
+                "Arnold Press",
+                "Machine Shoulder Press"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Tricep Pushdown",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Elbows tucked, full lockout at bottom.",
+              "alternatives": [
+                "DB Overhead Extension",
+                "Band Pushdown",
+                "Skull Crusher",
+                "Close-Grip Push-Up"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Leg Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Full range, pause at contraction.",
+              "alternatives": [
+                "DB Leg Curl",
+                "Band Leg Curl",
+                "Nordic Curl",
+                "Swiss Ball Leg Curl"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Cable Row",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Pull to lower chest, squeeze shoulder blades together.",
+              "alternatives": [
+                "DB Row",
+                "Band Row",
+                "Barbell Row",
+                "Machine Row"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "Chest Press Machine",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Controlled descent, full lockout.",
+              "alternatives": [
+                "DB Bench Press",
+                "Barbell Bench Press",
+                "Band Chest Press",
+                "Push-Up"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Romanian Deadlift",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Hinge at hips, flat back, feel the hamstring stretch.",
+              "alternatives": [
+                "DB Romanian Deadlift",
+                "Band Pull-Through",
+                "Good Morning"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Rear Delt Fly",
+              "sets": 3,
+              "reps": "15-20",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Hinge forward, raise arms to sides with slight bend.",
+              "alternatives": [
+                "Face Pull",
+                "Band Pull-Apart",
+                "Reverse Pec Deck",
+                "Cable Rear Delt Fly"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "15-20",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full extension, squeeze quads at top.",
+              "alternatives": [
+                "DB Step-Up",
+                "Band Leg Extension",
+                "Wall Sit",
+                "Terminal Knee Extension"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ac8-p1-4day",
+      "name": "Foundation 4×",
+      "daysPerWeek": 4,
+      "title": "8 Weeks · Upper/Lower Split",
+      "weeks": 8,
+      "days": [
+        {
+          "number": 1,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Barbell Bench Press",
+              "sets": 4,
+              "reps": "6-8",
+              "restSeconds": 180,
+              "rir": "2",
+              "notes": "Tuck elbows 45°, lower to mid-chest, full press.",
+              "alternatives": [
+                "DB Bench Press",
+                "Machine Chest Press",
+                "Band Chest Press",
+                "Push-Up"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Barbell Row",
+              "sets": 4,
+              "reps": "6-8",
+              "restSeconds": 180,
+              "rir": "2",
+              "notes": "Overhand grip, pull to belly button, keep back flat.",
+              "alternatives": [
+                "DB Row",
+                "Cable Row",
+                "Machine Row",
+                "Band Row"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "Incline DB Press",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "30-45° bench, press to ceiling.",
+              "alternatives": [
+                "Incline Barbell Press",
+                "Machine Incline Press",
+                "Band Press"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Lat Pulldown",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Wide grip, pull to upper chest, drive elbows down.",
+              "alternatives": [
+                "DB Pullover",
+                "Band Pulldown",
+                "Cable Row",
+                "Inverted Row"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Lateral Raise",
+              "sets": 3,
+              "reps": "15-20",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Lead with elbows, slight forward lean.",
+              "alternatives": [
+                "DB Lateral Raise",
+                "Cable Lateral Raise",
+                "Band Lateral Raise"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Bicep Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full ROM, don't swing.",
+              "alternatives": [
+                "DB Curl",
+                "Hammer Curl",
+                "Band Curl",
+                "Cable Curl"
+              ]
+            },
+            {
+              "label": "C3",
+              "name": "Tricep Pushdown",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Elbows fixed, full lockout.",
+              "alternatives": [
+                "DB Overhead Extension",
+                "Band Pushdown",
+                "Skull Crusher"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Back Squat",
+              "sets": 4,
+              "reps": "6-8",
+              "restSeconds": 180,
+              "rir": "2",
+              "notes": "Full depth, brace core, push knees out.",
+              "alternatives": [
+                "Leg Press",
+                "Goblet Squat",
+                "DB Split Squat",
+                "Band Squat"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Romanian Deadlift",
+              "sets": 4,
+              "reps": "8-10",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Push hips back, feel hamstring stretch.",
+              "alternatives": [
+                "DB Romanian Deadlift",
+                "Band Pull-Through",
+                "Good Morning"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Feet shoulder-width, full range of motion.",
+              "alternatives": [
+                "Hack Squat",
+                "DB Split Squat",
+                "Goblet Squat"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Leg Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Full range, pause at contraction.",
+              "alternatives": [
+                "DB Leg Curl",
+                "Band Leg Curl",
+                "Nordic Curl"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "15-20",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full extension, hold briefly at top.",
+              "alternatives": [
+                "Terminal Knee Extension",
+                "DB Step-Up",
+                "Wall Sit"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Calf Raise",
+              "sets": 4,
+              "reps": "15-20",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full stretch at bottom, full contraction at top.",
+              "alternatives": [
+                "DB Calf Raise",
+                "Band Calf Raise",
+                "Leg Press Calf Raise"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Overhead Press",
+              "sets": 4,
+              "reps": "8-10",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Press directly overhead, keep core tight.",
+              "alternatives": [
+                "DB Overhead Press",
+                "Band Overhead Press",
+                "Arnold Press",
+                "Machine Shoulder Press"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Cable Row",
+              "sets": 4,
+              "reps": "10-12",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Pull to lower chest, full stretch at end.",
+              "alternatives": [
+                "DB Row",
+                "Band Row",
+                "Machine Row",
+                "Barbell Row"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "DB Chest Fly",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Slight bend in elbows, feel deep chest stretch.",
+              "alternatives": [
+                "Cable Fly",
+                "Machine Fly",
+                "Band Fly",
+                "Pec Deck"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Face Pull",
+              "sets": 3,
+              "reps": "15-20",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Pull to face, elbows high, external rotation.",
+              "alternatives": [
+                "Band Pull-Apart",
+                "DB Rear Delt Fly",
+                "Reverse Pec Deck"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Lateral Raise",
+              "sets": 3,
+              "reps": "15-20",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Controlled, slight forward lean.",
+              "alternatives": [
+                "Cable Lateral Raise",
+                "Band Lateral Raise",
+                "DB Lateral Raise"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Skull Crusher",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Lower bar to forehead, full extension.",
+              "alternatives": [
+                "DB Skull Crusher",
+                "Band Overhead Extension",
+                "Overhead Cable Extension"
+              ]
+            },
+            {
+              "label": "C3",
+              "name": "Hammer Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Neutral grip, full ROM.",
+              "alternatives": [
+                "DB Hammer Curl",
+                "Cable Hammer Curl",
+                "Band Curl"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Hip Thrust",
+              "sets": 4,
+              "reps": "10-12",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Drive hips to full extension, squeeze glutes.",
+              "alternatives": [
+                "DB Hip Thrust",
+                "Band Hip Thrust",
+                "Glute Bridge",
+                "Cable Pull-Through"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Romanian Deadlift",
+              "sets": 4,
+              "reps": "10-12",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Hinge at hips, feel the hamstring stretch.",
+              "alternatives": [
+                "DB Romanian Deadlift",
+                "Good Morning",
+                "Band Pull-Through"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "High foot placement emphasises glutes.",
+              "alternatives": [
+                "Hack Squat",
+                "DB Split Squat",
+                "Walking Lunge"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Leg Curl",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Full range, hold at contraction.",
+              "alternatives": [
+                "DB Leg Curl",
+                "Nordic Curl",
+                "Band Leg Curl"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "15-20",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full extension at top.",
+              "alternatives": [
+                "Terminal Knee Extension",
+                "DB Step-Up"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Calf Raise",
+              "sets": 4,
+              "reps": "15-20",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full stretch at bottom.",
+              "alternatives": [
+                "DB Calf Raise",
+                "Leg Press Calf Raise"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ac8-p2-3day",
+      "name": "Strength 3×",
+      "daysPerWeek": 3,
+      "title": "8 Weeks · Full Body",
+      "weeks": 8,
+      "days": [
+        {
+          "number": 1,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Back Squat",
+              "sets": 4,
+              "reps": "6-8",
+              "restSeconds": 180,
+              "rir": "2",
+              "notes": "Heavier load than Phase 1. Maintain depth and control.",
+              "alternatives": [
+                "Leg Press",
+                "Hack Squat",
+                "DB Split Squat",
+                "Band Squat"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Barbell Row",
+              "sets": 4,
+              "reps": "6-8",
+              "restSeconds": 180,
+              "rir": "2",
+              "notes": "Heavier load. Pull explosively, lower with control.",
+              "alternatives": [
+                "DB Row",
+                "Pendlay Row",
+                "Cable Row",
+                "Band Row"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "Barbell Bench Press",
+              "sets": 3,
+              "reps": "8-10",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Controlled descent to chest, explosive press.",
+              "alternatives": [
+                "DB Bench Press",
+                "Machine Chest Press",
+                "Band Chest Press"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Romanian Deadlift",
+              "sets": 3,
+              "reps": "8-10",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Maintain flat back, push hips back further.",
+              "alternatives": [
+                "DB Romanian Deadlift",
+                "Leg Curl",
+                "Band Pull-Through"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Cable Lateral Raise",
+              "sets": 4,
+              "reps": "12-15",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Constant tension from cable. Control throughout.",
+              "alternatives": [
+                "DB Lateral Raise",
+                "Band Lateral Raise",
+                "Machine Lateral Raise"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Incline DB Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Arms hang behind body for stretch. Curl to shoulder.",
+              "alternatives": [
+                "DB Curl",
+                "Cable Curl",
+                "Band Curl",
+                "Preacher Curl"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Leg Press",
+              "sets": 4,
+              "reps": "8-10",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Heavier load than Phase 1. Full range.",
+              "alternatives": [
+                "Back Squat",
+                "Hack Squat",
+                "DB Split Squat"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Weighted Pull-Up",
+              "sets": 4,
+              "reps": "6-8",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Full hang to chin above bar. Add weight as needed.",
+              "alternatives": [
+                "Lat Pulldown",
+                "Band-Assisted Pull-Up",
+                "DB Pullover",
+                "Cable Row"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "Incline Barbell Press",
+              "sets": 3,
+              "reps": "8-10",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "30-45° incline. Control descent.",
+              "alternatives": [
+                "Incline DB Press",
+                "Machine Incline Press",
+                "Band Press"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Hip Thrust",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Load heavier than Phase 1. Drive hips up explosively.",
+              "alternatives": [
+                "DB Hip Thrust",
+                "Glute Bridge",
+                "Cable Pull-Through",
+                "Band Hip Thrust"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Overhead Press",
+              "sets": 3,
+              "reps": "8-10",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Strict press, no leg drive.",
+              "alternatives": [
+                "DB Overhead Press",
+                "Machine Shoulder Press",
+                "Band Overhead Press"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Overhead Tricep Extension",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full stretch at bottom, lockout at top.",
+              "alternatives": [
+                "Skull Crusher",
+                "Band Pushdown",
+                "Tricep Pushdown",
+                "DB Extension"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Leg Curl",
+              "sets": 4,
+              "reps": "10-12",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Loaded stretch focus. Control the lowering phase.",
+              "alternatives": [
+                "DB Leg Curl",
+                "Nordic Curl",
+                "Band Leg Curl",
+                "Swiss Ball Curl"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Chest-Supported Row",
+              "sets": 4,
+              "reps": "10-12",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "No lower back involvement. Full retraction at top.",
+              "alternatives": [
+                "Cable Row",
+                "DB Row",
+                "Band Row",
+                "Machine Row"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "Cable Fly",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Constant tension throughout the arc.",
+              "alternatives": [
+                "DB Fly",
+                "Machine Fly",
+                "Pec Deck",
+                "Band Fly"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Hip Thrust",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Squeeze glutes at top.",
+              "alternatives": [
+                "DB Hip Thrust",
+                "Glute Bridge",
+                "Band Hip Thrust"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Face Pull",
+              "sets": 3,
+              "reps": "15-20",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Pull to forehead, elbows high.",
+              "alternatives": [
+                "Band Pull-Apart",
+                "DB Rear Delt Fly",
+                "Reverse Pec Deck"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Hack Squat",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Deep range of motion. Quad focus.",
+              "alternatives": [
+                "Leg Extension",
+                "DB Split Squat",
+                "Leg Press",
+                "Band Squat"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ac8-p2-4day",
+      "name": "Strength 4×",
+      "daysPerWeek": 4,
+      "title": "8 Weeks · Upper/Lower Split",
+      "weeks": 8,
+      "days": [
+        {
+          "number": 1,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Barbell Bench Press",
+              "sets": 4,
+              "reps": "5-6",
+              "restSeconds": 180,
+              "rir": "2",
+              "notes": "Heavier loading. Technique focus on leg drive and arch.",
+              "alternatives": [
+                "DB Bench Press",
+                "Machine Chest Press",
+                "Band Chest Press"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Barbell Row",
+              "sets": 4,
+              "reps": "5-6",
+              "restSeconds": 180,
+              "rir": "2",
+              "notes": "Heavy. Keep back flat. Explosive pull.",
+              "alternatives": [
+                "DB Row",
+                "Pendlay Row",
+                "Cable Row",
+                "Machine Row"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "Incline DB Press",
+              "sets": 3,
+              "reps": "8-10",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Load heavier than Phase 1.",
+              "alternatives": [
+                "Incline Barbell Press",
+                "Machine Incline",
+                "Band Press"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Weighted Pull-Up",
+              "sets": 3,
+              "reps": "6-8",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Add weight or use band assistance as needed.",
+              "alternatives": [
+                "Lat Pulldown",
+                "Cable Row",
+                "Band Pulldown"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Cable Lateral Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Constant cable tension.",
+              "alternatives": [
+                "DB Lateral Raise",
+                "Band Lateral Raise"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Incline DB Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Arms behind body for maximum stretch.",
+              "alternatives": [
+                "Preacher Curl",
+                "Cable Curl",
+                "Band Curl"
+              ]
+            },
+            {
+              "label": "C3",
+              "name": "Tricep Pushdown",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full lockout each rep.",
+              "alternatives": [
+                "Skull Crusher",
+                "DB Overhead Extension",
+                "Band Pushdown"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Back Squat",
+              "sets": 4,
+              "reps": "5-6",
+              "restSeconds": 180,
+              "rir": "2",
+              "notes": "Heaviest squats of the program. Focus on depth and bracing.",
+              "alternatives": [
+                "Hack Squat",
+                "Leg Press",
+                "DB Split Squat"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Romanian Deadlift",
+              "sets": 4,
+              "reps": "6-8",
+              "restSeconds": 180,
+              "rir": "2",
+              "notes": "Load heavier, focus on slow eccentric.",
+              "alternatives": [
+                "DB Romanian Deadlift",
+                "Good Morning",
+                "Band Pull-Through"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "Leg Press",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "High foot placement for glute emphasis.",
+              "alternatives": [
+                "Hack Squat",
+                "Walking Lunge",
+                "DB Split Squat"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Leg Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Slow lowering phase.",
+              "alternatives": [
+                "Nordic Curl",
+                "DB Leg Curl",
+                "Band Leg Curl"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full contraction at top.",
+              "alternatives": [
+                "Terminal Knee Extension",
+                "Sissy Squat"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Calf Raise",
+              "sets": 4,
+              "reps": "12-15",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full stretch and contraction.",
+              "alternatives": [
+                "DB Calf Raise",
+                "Leg Press Calf Raise"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Overhead Press",
+              "sets": 4,
+              "reps": "6-8",
+              "restSeconds": 180,
+              "rir": "2",
+              "notes": "Strict press, heavier than Phase 1.",
+              "alternatives": [
+                "DB Overhead Press",
+                "Machine Shoulder Press",
+                "Band Overhead Press"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Chest-Supported Row",
+              "sets": 4,
+              "reps": "8-10",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Heavy, full retraction at top.",
+              "alternatives": [
+                "Cable Row",
+                "DB Row",
+                "Band Row",
+                "Machine Row"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "Cable Fly",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Focus on the stretch at the bottom.",
+              "alternatives": [
+                "DB Fly",
+                "Machine Fly",
+                "Pec Deck"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Face Pull",
+              "sets": 3,
+              "reps": "15-20",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "High elbows, external rotation.",
+              "alternatives": [
+                "Band Pull-Apart",
+                "DB Rear Delt Fly",
+                "Reverse Pec Deck"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Cable Lateral Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Constant tension.",
+              "alternatives": [
+                "DB Lateral Raise",
+                "Band Lateral Raise"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Overhead Tricep Extension",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full stretch, full lockout.",
+              "alternatives": [
+                "Skull Crusher",
+                "Tricep Pushdown",
+                "Band Extension"
+              ]
+            },
+            {
+              "label": "C3",
+              "name": "Hammer Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Neutral grip.",
+              "alternatives": [
+                "DB Curl",
+                "Cable Hammer Curl",
+                "Band Curl"
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "exercises": [
+            {
+              "label": "A1",
+              "name": "Hip Thrust",
+              "sets": 4,
+              "reps": "8-10",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Heavier load. Pause at top.",
+              "alternatives": [
+                "DB Hip Thrust",
+                "Glute Bridge",
+                "Cable Pull-Through",
+                "Band Hip Thrust"
+              ]
+            },
+            {
+              "label": "A2",
+              "name": "Romanian Deadlift",
+              "sets": 4,
+              "reps": "8-10",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Control the eccentric, feel the stretch.",
+              "alternatives": [
+                "DB Romanian Deadlift",
+                "Good Morning",
+                "Band Pull-Through"
+              ]
+            },
+            {
+              "label": "B1",
+              "name": "Hack Squat",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 120,
+              "rir": "2",
+              "notes": "Deep ROM for quad development.",
+              "alternatives": [
+                "Leg Press",
+                "DB Split Squat",
+                "Goblet Squat"
+              ]
+            },
+            {
+              "label": "B2",
+              "name": "Leg Curl",
+              "sets": 3,
+              "reps": "10-12",
+              "restSeconds": 90,
+              "rir": "2",
+              "notes": "Loaded stretch at bottom.",
+              "alternatives": [
+                "Nordic Curl",
+                "DB Leg Curl",
+                "Band Leg Curl"
+              ]
+            },
+            {
+              "label": "C1",
+              "name": "Leg Extension",
+              "sets": 3,
+              "reps": "12-15",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full contraction.",
+              "alternatives": [
+                "Terminal Knee Extension",
+                "DB Step-Up"
+              ]
+            },
+            {
+              "label": "C2",
+              "name": "Calf Raise",
+              "sets": 4,
+              "reps": "12-15",
+              "restSeconds": 60,
+              "rir": "1",
+              "notes": "Full range.",
+              "alternatives": [
+                "DB Calf Raise",
+                "Leg Press Calf Raise"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "videos": {
+    "3-Point Band Row": "https://vimeo.com/602448689",
+    "45-Degree Back Extension": "https://vimeo.com/576164805",
+    "Assisted Pull Up": "https://vimeo.com/432806142",
+    "Ball Crunch": "https://www.youtube.com/watch?v=O4d3kd1ZLyc",
+    "Band Bent Over Row": "https://vimeo.com/601685412",
+    "Band Bulgarian SS": "https://vimeo.com/601670400",
+    "Band Crunch": "https://vimeo.com/424296970",
+    "Band Face Pull": "https://vimeo.com/601761114",
+    "Band Glute Bridge": "https://vimeo.com/600995300",
+    "Band Good Morning": "https://vimeo.com/600904712",
+    "Band Hammer Curl": "https://vimeo.com/674490610",
+    "Band Hip Thrust": "https://vimeo.com/420194380",
+    "Band Push Up": "https://vimeo.com/601607852",
+    "Band Rear Delt Pull": "https://vimeo.com/601772215",
+    "Band RFE Romanian Deadlift": "https://vimeo.com/600899996",
+    "Band Reverse Lunge": "https://vimeo.com/674490707",
+    "Band Upper Back Row": "https://vimeo.com/675515701",
+    "Barbell Back Squat": "https://vimeo.com/465721252",
+    "Barbell Bicep Curl": "https://vimeo.com/446805120",
+    "Barbell Front Squat": "https://vimeo.com/469207105",
+    "Barbell Glute Bridge": "https://vimeo.com/456890379",
+    "Barbell Good Morning": "https://vimeo.com/674405802",
+    "Barbell Hip Thrust": "https://vimeo.com/694917357",
+    "Barbell Incline Press": "https://vimeo.com/439684342",
+    "Barbell Overhead Press": "https://vimeo.com/444824375",
+    "BB Back Squat": "https://vimeo.com/465721252",
+    "BB Bench Press": "https://vimeo.com/431174462",
+    "BB Reverse Lunge": "https://vimeo.com/600909982",
+    "BB Romanian Deadlift": "https://vimeo.com/467029921",
+    "BB Split Squat": "https://vimeo.com/464986275",
+    "Bicycle Crunch": "https://www.youtube.com/watch?v=wnuLak2onoA",
+    "Cable Curl": "https://vimeo.com/446807591",
+    "Cable Fly": "https://vimeo.com/448042565",
+    "Cable Glute Kickback": "https://vimeo.com/771503505",
+    "Cable Incline Chest Press": "https://vimeo.com/448044318",
+    "Cable Lat Prayer": "https://www.youtube.com/watch?v=6E2skSzaImQ",
+    "Cable Lat Row": "https://vimeo.com/675515733",
+    "Cable Row": "https://vimeo.com/474383622",
+    "Cable Upper Back Row": "https://vimeo.com/675515701",
+    "Chest Supported T-Bar Row": "https://vimeo.com/694885571",
+    "Conventional Deadlift": "https://vimeo.com/514897939",
+    "Cross Body Tricep Extension": "https://vimeo.com/674539372",
+    "D-handle Lat Pulldown": "https://vimeo.com/771251892",
+    "DB Bench Press": "https://vimeo.com/439685128",
+    "DB Bent Over Row": "https://vimeo.com/441560029",
+    "DB Bicep Curl": "https://vimeo.com/446831724",
+    "DB Bulgarian SS": "https://vimeo.com/467038159",
+    "DB Chest Supported Upper Back Row": "https://vimeo.com/772202899",
+    "DB Deadlift": "https://vimeo.com/480355804",
+    "DB Extended ROM Floor Press": "https://vimeo.com/771363748",
+    "DB Face Pull": "https://vimeo.com/444794621",
+    "DB FFES": "https://vimeo.com/467025599",
+    "DB Floor Chest Fly": "https://vimeo.com/431798582",
+    "DB Fly": "https://www.youtube.com/watch?v=JFm8KbhjibM",
+    "DB Glute Bridge": "https://vimeo.com/694888791",
+    "DB Hack Squat": "https://vimeo.com/674401195",
+    "DB Hammer Curl": "https://vimeo.com/446820004",
+    "DB High Incline Press": "https://vimeo.com/601016777",
+    "DB Hip Thrust": "https://vimeo.com/413979034",
+    "DB Incline Bench Press": "https://vimeo.com/433356688",
+    "DB Incline Bicep Curl": "https://vimeo.com/514898267",
+    "DB Incline Hammer Curl": "https://vimeo.com/514898260",
+    "DB Incline Lateral Raise": "https://vimeo.com/601059485",
+    "DB Lateral Raise": "https://vimeo.com/441561964",
+    "DB One Arm Row": "https://vimeo.com/444793763",
+    "DB Rear Delt Fly": "https://vimeo.com/419556626",
+    "DB Reverse Lunge": "https://vimeo.com/601022715",
+    "DB RFES (Glute-Biased)": "https://vimeo.com/771377144",
+    "DB RFES (Quad Biased)": "https://vimeo.com/771377135",
+    "DB Romanian Deadlift": "https://vimeo.com/467029912",
+    "DB Short Lunge": "https://www.youtube.com/watch?v=MiDVG3YStGc",
+    "DB Shoulder Press": "https://vimeo.com/439685903",
+    "DB Split Squat": "https://vimeo.com/478799986",
+    "DB Stiffleg Deadlift": "https://vimeo.com/771372079",
+    "DB Y-Raise": "https://vimeo.com/772260122",
+    "Deficit Push Up": "https://www.youtube.com/watch?v=KadL9HpmWSg",
+    "Face Away Cable Curl": "https://vimeo.com/675515672",
+    "Face Pull": "https://vimeo.com/514900474",
+    "Garhammer": "https://vimeo.com/432809017",
+    "Hack Squat": "https://vimeo.com/694500328",
+    "Half kneeling SA lat pulldown": "https://vimeo.com/772217757",
+    "Half Kneeling Band Row": "https://vimeo.com/601718395",
+    "Handle Band Bicep Curl": "https://vimeo.com/424285186",
+    "Handle Band Chest Press": "https://vimeo.com/417120096",
+    "Handle Band Lateral Raise": "https://vimeo.com/424284185",
+    "Handle Band Leg Curl": "https://vimeo.com/424298140",
+    "Handle Band Neutral Grip Lat Pulldown": "https://vimeo.com/424292435",
+    "Handle Band Shoulder Press": "https://vimeo.com/424283928",
+    "Handle Band Split Squat": "https://vimeo.com/448602177",
+    "Handle Band Squat": "https://vimeo.com/424288100",
+    "Handle Band Tricep Pressdown": "https://vimeo.com/417124387",
+    "Heel Elevated Goblet Squat": "https://www.youtube.com/watch?v=RUXLuZ_GLrE",
+    "Inverted Row": "https://vimeo.com/602470658",
+    "Landmine Bulgarian Split Squat": "https://vimeo.com/674886879",
+    "Landmine Reverse Lunge": "https://vimeo.com/674939087",
+    "Landmine Squat": "https://vimeo.com/674886850",
+    "Leg Extension": "https://vimeo.com/456125872",
+    "Leg Press": "https://vimeo.com/697631922",
+    "Leg Raise": "https://vimeo.com/693650795",
+    "Looped Band Bicep Curl": "https://vimeo.com/674475096",
+    "Looped Band Chest Fly": "https://vimeo.com/601623100",
+    "Looped Band Chest Press": "https://vimeo.com/601161038",
+    "Looped Band Prone Leg Curl": "https://vimeo.com/602414832",
+    "Looped Band Romanian Deadlift": "https://vimeo.com/600897206",
+    "Looped Band Shoulder Press": "https://vimeo.com/601666634",
+    "Looped Band Split Squat": "https://vimeo.com/601695969",
+    "Looped Band Squat": "https://vimeo.com/601706004",
+    "Looped Band Tricep Pressdown": "https://vimeo.com/674490655",
+    "Machine Chest Press": "https://vimeo.com/447127538",
+    "Machine Row": "https://vimeo.com/447127521",
+    "Machine Shoulder Press": "https://vimeo.com/439685919",
+    "Neutral Grip Lat Pulldown": "https://vimeo.com/441561018",
+    "Overhand Band Lat Pulldown": "https://vimeo.com/424280277",
+    "Overhand lat pulldown": "https://vimeo.com/441561025",
+    "Pec Dec": "https://vimeo.com/694476669",
+    "Pike Push Up": "https://vimeo.com/418804356",
+    "Plate-Loaded Chest Press": "https://vimeo.com/694879189",
+    "Pull Up": "https://vimeo.com/422139438",
+    "Push Up": "https://vimeo.com/427365793",
+    "Reverse Crunch": "https://vimeo.com/440024006",
+    "Reverse Nordic": "https://vimeo.com/692535702",
+    "Reverse Pec Dec": "https://vimeo.com/694478015",
+    "Rope Crunch": "https://vimeo.com/418402232",
+    "Rope Hammer Curl": "https://vimeo.com/446813277",
+    "Rope Straight Arm Pulldown": "https://vimeo.com/447121836",
+    "Rope Tricep Pressdown": "https://vimeo.com/467036653",
+    "SA Cable Lateral Raise": "https://vimeo.com/441561985",
+    "SA Cable Rear Delt Fly": "https://vimeo.com/771367239",
+    "SA Cable Y-Raise": "https://vimeo.com/772260132",
+    "Seated Leg Curl": "https://vimeo.com/456125854",
+    "Single Arm Lat Pulldown": "https://vimeo.com/420188184",
+    "Single-Arm Tricep Pressdown": "https://vimeo.com/675525364",
+    "Single-Leg Leg Press": "https://vimeo.com/697631926",
+    "Sissy Squat": "https://vimeo.com/773308975",
+    "Sliding Leg Curl": "https://vimeo.com/600977440",
+    "Smith Machine Hack Squat": "https://vimeo.com/694501482",
+    "Smith Machine Split Squat": "https://www.youtube.com/watch?v=j-TJxRRPu64",
+    "Straight Bar Tricep Pressdown": "https://vimeo.com/467036666",
+    "Straight-Legged Bridge": "https://vimeo.com/601834276",
+    "Swiss Ball Leg Curl": "https://vimeo.com/516700463",
+    "T-Bar Row": "https://vimeo.com/674938023",
+    "Trap Bar Romanian Deadlift": "https://vimeo.com/492994363",
+    "Back Squat": "https://vimeo.com/465721252",
+    "Barbell Bench Press": "https://vimeo.com/431174462",
+    "Barbell Row": "https://vimeo.com/674938023",
+    "Bicep Curl": "https://vimeo.com/446805120",
+    "Chest Press Machine": "https://vimeo.com/447127538",
+    "Hip Thrust": "https://vimeo.com/694917357",
+    "Incline Barbell Press": "https://vimeo.com/439684342",
+    "Incline DB Press": "https://vimeo.com/433356688",
+    "Lat Pulldown": "https://vimeo.com/441561018",
+    "Lateral Raise": "https://vimeo.com/441561964",
+    "Leg Curl": "https://vimeo.com/456125854",
+    "Overhead Press": "https://vimeo.com/444824375",
+    "Rear Delt Fly": "https://vimeo.com/419556626",
+    "Romanian Deadlift": "https://vimeo.com/467029921",
+    "Tricep Pushdown": "https://vimeo.com/467036653",
+    "Arnold Press": "https://vimeo.com/439685903",
+    "DB Chest Fly": "https://vimeo.com/431798582",
+    "DB Curl": "https://vimeo.com/446831724",
+    "DB Extension": "https://vimeo.com/674539372",
+    "DB Leg Curl": "https://vimeo.com/456125854",
+    "DB Overhead Extension": "https://vimeo.com/674539372",
+    "DB Overhead Press": "https://vimeo.com/439685903",
+    "DB Pullover": "https://vimeo.com/601016777",
+    "DB Row": "https://vimeo.com/444793763",
+    "DB Skull Crusher": "https://vimeo.com/674539372",
+    "DB Step-Up": "https://vimeo.com/601022715",
+    "Incline DB Curl": "https://vimeo.com/514898267",
+    "Cable Hammer Curl": "https://vimeo.com/446813277",
+    "Cable Lateral Raise": "https://vimeo.com/441561985",
+    "Cable Pull-Through": "https://vimeo.com/600897206",
+    "Cable Rear Delt Fly": "https://vimeo.com/771367239",
+    "Overhead Cable Extension": "https://vimeo.com/467036653",
+    "Band Chest Press": "https://vimeo.com/601161038",
+    "Band Curl": "https://vimeo.com/674475096",
+    "Band Extension": "https://vimeo.com/674490655",
+    "Band Fly": "https://vimeo.com/601623100",
+    "Band Lateral Raise": "https://vimeo.com/424284185",
+    "Band Leg Curl": "https://vimeo.com/602414832",
+    "Band Leg Extension": "https://vimeo.com/456125872",
+    "Band Overhead Extension": "https://vimeo.com/674490655",
+    "Band Overhead Press": "https://vimeo.com/601666634",
+    "Band Press": "https://vimeo.com/417120096",
+    "Band Pull-Apart": "https://vimeo.com/601772215",
+    "Band Pull-Through": "https://vimeo.com/600904712",
+    "Band Pulldown": "https://vimeo.com/424280277",
+    "Band Pushdown": "https://vimeo.com/674490655",
+    "Band Row": "https://vimeo.com/601685412",
+    "Band Squat": "https://vimeo.com/601706004",
+    "Band-Assisted Pull-Up": "https://vimeo.com/432806142",
+    "Band Calf Raise": "https://vimeo.com/600995300",
+    "Chest-Supported Row": "https://vimeo.com/694885571",
+    "Machine Fly": "https://vimeo.com/694476669",
+    "Machine Incline": "https://vimeo.com/447127538",
+    "Machine Incline Press": "https://vimeo.com/447127538",
+    "Machine Lateral Raise": "https://vimeo.com/441561985",
+    "Close-Grip Push-Up": "https://vimeo.com/427365793",
+    "DB Calf Raise": "https://vimeo.com/697631922",
+    "Calf Raise": "https://vimeo.com/697631922",
+    "Leg Press Calf Raise": "https://vimeo.com/697631922",
+    "Glute Bridge": "https://vimeo.com/456890379",
+    "Goblet Squat": "https://www.youtube.com/watch?v=RUXLuZ_GLrE",
+    "Good Morning": "https://vimeo.com/674405802",
+    "Hammer Curl": "https://vimeo.com/446820004",
+    "Nordic Curl": "https://vimeo.com/692535702",
+    "Overhead Tricep Extension": "https://vimeo.com/674539372",
+    "Pec Deck": "https://vimeo.com/694476669",
+    "Pendlay Row": "https://vimeo.com/674938023",
+    "Preacher Curl": "https://vimeo.com/514898267",
+    "Push-Up": "https://vimeo.com/427365793",
+    "Reverse Pec Deck": "https://vimeo.com/694478015",
+    "Skull Crusher": "https://vimeo.com/674539372",
+    "Swiss Ball Curl": "https://vimeo.com/516700463",
+    "Terminal Knee Extension": "https://vimeo.com/456125872",
+    "Walking Lunge": "https://vimeo.com/601022715",
+    "Wall Sit": "https://vimeo.com/773308975",
+    "Weighted Pull-Up": "https://vimeo.com/422139438"
+  }
+}
