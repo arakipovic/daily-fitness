@@ -26,13 +26,40 @@ cd daily-fitness
 git lfs pull
 ```
 
+## iPhone Setup (first time)
+
+### 1. Enable Developer Mode on the phone
+Required on iOS 16+. You only do this once per device.
+
+1. On the iPhone: **Settings → Privacy & Security → Developer Mode**
+2. Toggle **Developer Mode** on → tap **Restart**
+3. After reboot, tap **Turn On** in the confirmation prompt
+
+### 2. Trust the Mac
+Connect the iPhone via USB.
+
+1. Unlock the phone → tap **Trust** on the "Trust This Computer?" prompt
+2. Enter your passcode if asked
+
+### 3. Trust your developer certificate on the phone
+After the first build lands on the device:
+
+1. **Settings → General → VPN & Device Management**
+2. Tap your Apple ID under **Developer App**
+3. Tap **Trust "your@apple.id"** → **Trust**
+
+The app will open normally from here on.
+
+---
+
 ## Running in Xcode
 
 1. Open `DailyFitness.xcodeproj`
 2. Select the **DailyFitness** target → **Signing & Capabilities**
 3. Set a unique **Bundle Identifier** (e.g. `com.yourname.dailyfitness`)
 4. Select your **Apple Developer Team**
-5. Choose a simulator or connected device, then **⌘R**
+5. Select your iPhone from the device picker (or choose a simulator)
+6. **⌘R** to build and run
 
 ## Running Tests
 
