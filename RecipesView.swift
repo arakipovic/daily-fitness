@@ -835,6 +835,7 @@ struct RecipesView: View {
         }
         .searchable(text: $searchText, prompt: "Search recipes")
         .navigationTitle("Recipes")
+        .trackScreen("recipes")
     }
 }
 

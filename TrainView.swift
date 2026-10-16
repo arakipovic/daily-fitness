@@ -102,6 +102,7 @@ struct TrainView: View {
                 }
                 .navigationTitle(program.name)
                 .navigationBarTitleDisplayMode(.large)
+                .trackScreen("train")
                 .toolbar {
                     ToolbarItemGroup(placement: .topBarTrailing) {
                         Button { global.showingCustomWorkout = true } label: {

@@ -65,6 +65,7 @@ struct TrainingGuideView: View {
             }
         }
         .navigationTitle("Training Guide")
+        .trackScreen("training_guide")
     }
 }
 

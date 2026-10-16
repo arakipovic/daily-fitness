@@ -155,6 +155,9 @@ final class Store {
         logbook.sessions[key] = session
         saveLogbook()
         rebuildExerciseIndex()
+        if !wasCompleted && session.completed != nil {
+            Analytics.shared.track("workout_completed", ["week": String(session.week), "day": String(session.day)])
+        }
         if !wasCompleted && WorkoutLogic.shouldWriteToHealth(session: session) {
             Task { await HealthKitManager.shared.writeWorkout(session: session) }
         }
@@ -170,6 +173,9 @@ final class Store {
         logbook.sessions[key] = session
         saveImmediately()
         rebuildExerciseIndex()
+        if !wasCompleted && session.completed != nil {
+            Analytics.shared.track("workout_completed", ["week": String(session.week), "day": String(session.day)])
+        }
         if !wasCompleted && WorkoutLogic.shouldWriteToHealth(session: session) {
             Task { await HealthKitManager.shared.writeWorkout(session: session) }
         }
@@ -229,6 +235,7 @@ final class Store {
 
     func addFoodEntry(_ entry: FoodEntry) {
         logbook.foodLog.append(entry)
+        Analytics.shared.track("food_logged", ["meal": entry.meal.rawValue])
         saveImmediately()
     }
 
@@ -324,6 +331,7 @@ final class Store {
         )
         guard !entries.isEmpty else { return }
         logbook.foodLog.append(contentsOf: entries)
+        Analytics.shared.track("meal_logged", ["name": meal.name, "servings": String(format: "%.1f", servings)])
         saveImmediately()
     }
 
@@ -335,6 +343,7 @@ final class Store {
         }
         logbook.bodyMeasurements.append(measurement)
         logbook.bodyMeasurements.sort { $0.date < $1.date }
+        Analytics.shared.track("measurement_added")
         saveImmediately()
     }
 

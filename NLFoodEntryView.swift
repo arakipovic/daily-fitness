@@ -100,6 +100,7 @@ struct NLFoodEntryView: View {
             }
             .navigationTitle("Log by Description")
             .navigationBarTitleDisplayMode(.inline)
+            .trackScreen("nl_food_entry")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }

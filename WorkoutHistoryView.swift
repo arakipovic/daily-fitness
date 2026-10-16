@@ -33,6 +33,7 @@ struct WorkoutHistoryView: View {
             }
             .navigationTitle("Progress")
             .navigationBarTitleDisplayMode(.inline)
+            .trackScreen("workout_history")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     CloseButton()

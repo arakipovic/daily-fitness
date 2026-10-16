@@ -66,6 +66,7 @@ struct FoodScannerView: View {
             }
             .navigationTitle("Scan Food")
             .navigationBarTitleDisplayMode(.inline)
+            .trackScreen("food_scanner")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }

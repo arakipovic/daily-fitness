@@ -448,6 +448,7 @@ struct TDEECalculatorView: View {
             }
             .navigationTitle(navigationTitle)
             .navigationBarTitleDisplayMode(showsCancelButton ? .inline : .large)
+            .trackScreen("tdee_calculator")
             .toolbar {
                 if showsCancelButton {
                     ToolbarItem(placement: .cancellationAction) {

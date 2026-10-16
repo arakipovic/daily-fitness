@@ -116,6 +116,7 @@ struct WorkoutDayView: View {
             }
         }
         .onAppear {
+            Analytics.shared.screen("workout_day")
             if session.started == nil && !isCompleted {
                 session.started = Date()
                 prefillFromPreviousSession()

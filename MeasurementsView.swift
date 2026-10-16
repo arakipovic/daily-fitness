@@ -20,6 +20,7 @@ struct MeasurementsView: View {
         }
         .navigationTitle("Measurements")
         .navigationBarTitleDisplayMode(.large)
+        .trackScreen("measurements")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button { showingAdd = true } label: {

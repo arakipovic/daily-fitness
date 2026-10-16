@@ -131,6 +131,7 @@ struct FoodLogView: View {
             historicalActiveCalories = await healthKit.activeEnergy(on: selectedDate)
         }
         .navigationTitle("Food Log")
+        .trackScreen("food_log")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 HStack(spacing: 16) {

@@ -44,6 +44,7 @@ struct HealthView: View {
                 }
                 .navigationTitle("Health")
                 .navigationBarTitleDisplayMode(.large)
+                .trackScreen("health")
                 .toolbar { quickActionsToolbar }
                 .task { await refreshHealthData() }
                 .refreshable { await refreshHealthData() }

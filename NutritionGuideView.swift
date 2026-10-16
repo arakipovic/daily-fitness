@@ -55,6 +55,7 @@ struct NutritionGuideView: View {
             }
         }
         .navigationTitle("Nutrition Guide")
+        .trackScreen("nutrition_guide")
     }
 }
 

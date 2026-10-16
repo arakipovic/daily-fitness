@@ -646,6 +646,7 @@ struct CustomWorkoutPickerView: View {
             }
             .navigationTitle("Add Workout")
             .navigationBarTitleDisplayMode(.inline)
+            .trackScreen("custom_workout")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }

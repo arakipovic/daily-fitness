@@ -33,6 +33,7 @@ struct CalendarView: View {
             }
             .navigationTitle("Calendar")
             .navigationBarTitleDisplayMode(.inline)
+            .trackScreen("calendar")
             .sheet(item: $selectedDay) { item in
                 CalendarDayDetailView(date: item.date)
             }

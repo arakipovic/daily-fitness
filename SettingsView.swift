@@ -120,6 +120,7 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
+            .trackScreen("settings")
             .sheet(isPresented: $showingProgramPicker) {
                 ProgramPickerSheet()
             }
