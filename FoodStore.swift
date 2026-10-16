@@ -172,7 +172,8 @@ actor FoodStore {
 
     private func migrationFlagPath(_ name: String) -> String {
         let dir = (path as NSString).deletingLastPathComponent
-        return (dir as NSString).appendingPathComponent(".\(name).done")
+        let dbFile = (path as NSString).lastPathComponent
+        return (dir as NSString).appendingPathComponent(".\(dbFile)-\(name).done")
     }
 
     /// Returns a migration key that changes whenever the bundle file changes.

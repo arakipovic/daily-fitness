@@ -1,0 +1,15 @@
+# Xcode
+DailyFitness.xcodeproj/xcuserdata/
+DerivedData/
+build/
+*.xcuserstate
+
+# SQLite WAL
+*.db-shm
+*.db-wal
+
+# Raw data / build scripts input
+data/
+
+# macOS
+.DS_Store

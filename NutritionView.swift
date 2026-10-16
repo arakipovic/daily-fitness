@@ -144,6 +144,7 @@ struct NutritionView: View {
                 historicalActiveCalories = calories
             }
             .navigationTitle("Nutrition")
+            .trackScreen("nutrition")
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Menu {
@@ -421,16 +422,17 @@ struct SeparatelyLoggedMealEditView: View {
 
     let group: MealEntryGroup
     @State private var showingMealBuilder = false
+    @State private var entries: [FoodEntry] = []
 
-    private var totalKcal: Int       { group.entries.reduce(0) { $0 + $1.calories } }
-    private var totalProtein: Double { group.entries.reduce(0.0) { $0 + $1.protein } }
-    private var totalCarbs: Double   { group.entries.reduce(0.0) { $0 + $1.carbs } }
-    private var totalFat: Double     { group.entries.reduce(0.0) { $0 + $1.fat } }
-    private var totalFiber: Double   { group.entries.reduce(0.0) { $0 + $1.fiber } }
-    private var totalSugar: Double   { group.entries.reduce(0.0) { $0 + $1.sugar } }
-    private var totalSatFat: Double  { group.entries.reduce(0.0) { $0 + $1.saturatedFat } }
-    private var totalSodium: Double  { group.entries.reduce(0.0) { $0 + $1.sodium } }
-    private var totalChol: Double    { group.entries.reduce(0.0) { $0 + $1.cholesterol } }
+    private var totalKcal: Int       { entries.reduce(0) { $0 + $1.calories } }
+    private var totalProtein: Double { entries.reduce(0.0) { $0 + $1.protein } }
+    private var totalCarbs: Double   { entries.reduce(0.0) { $0 + $1.carbs } }
+    private var totalFat: Double     { entries.reduce(0.0) { $0 + $1.fat } }
+    private var totalFiber: Double   { entries.reduce(0.0) { $0 + $1.fiber } }
+    private var totalSugar: Double   { entries.reduce(0.0) { $0 + $1.sugar } }
+    private var totalSatFat: Double  { entries.reduce(0.0) { $0 + $1.saturatedFat } }
+    private var totalSodium: Double  { entries.reduce(0.0) { $0 + $1.sodium } }
+    private var totalChol: Double    { entries.reduce(0.0) { $0 + $1.cholesterol } }
 
     private var matchingSavedMeal: SavedMeal? {
         store.logbook.savedMeals.first { $0.name == group.name }
@@ -449,14 +451,15 @@ struct SeparatelyLoggedMealEditView: View {
                     }
                 }
 
-                Section("Ingredients (\(group.entries.count))") {
-                    ForEach(group.entries) { entry in
-                        Text(ingredientLabel(entry.name))
-                            .font(.subheadline)
+                Section("Ingredients (\(entries.count))") {
+                    ForEach(entries) { entry in
+                        ingredientRow(for: entry)
                     }
                     .onDelete { offsets in
-                        offsets.map { group.entries[$0].id }.forEach { store.deleteFoodEntry(id: $0) }
-                        dismiss()
+                        let ids = offsets.map { entries[$0].id }
+                        ids.forEach { store.deleteFoodEntry(id: $0) }
+                        entries.remove(atOffsets: offsets)
+                        if entries.isEmpty { dismiss() }
                     }
                 }
 
@@ -468,7 +471,7 @@ struct SeparatelyLoggedMealEditView: View {
                     }
 
                     Button("Delete all", role: .destructive) {
-                        group.entries.forEach { store.deleteFoodEntry(id: $0.id) }
+                        entries.forEach { store.deleteFoodEntry(id: $0.id) }
                         dismiss()
                     }
                 }
@@ -483,15 +486,69 @@ struct SeparatelyLoggedMealEditView: View {
             .sheet(isPresented: $showingMealBuilder) {
                 if let meal = matchingSavedMeal {
                     MealBuilderView(
-                        date: group.entries.first?.date ?? Date(),
+                        date: entries.first?.date ?? Date(),
                         existingMeal: meal,
-                        defaultMeal: group.entries.first?.meal ?? .breakfast,
-                        replacingEntries: group.entries,
+                        defaultMeal: entries.first?.meal ?? .breakfast,
+                        replacingEntries: entries,
                         onAdded: { dismiss() }
                     )
                 }
             }
         }
+        .onAppear { entries = group.entries }
+    }
+
+    @ViewBuilder
+    private func ingredientRow(for entry: FoodEntry) -> some View {
+        let label = ingredientLabel(entry.name)
+        let grams = NutritionLogic.gramsFromEntryName(entry.name)
+        let displayName = grams != nil ? ingredientBaseName(label) : label
+        let step = stepSize(for: grams ?? 0)
+
+        HStack(spacing: 8) {
+            VStack(alignment: .leading, spacing: 3) {
+                Text(displayName)
+                    .font(.subheadline)
+                HStack(spacing: 6) {
+                    Text("\(entry.calories) kcal")
+                    Text("·").foregroundStyle(.tertiary)
+                    Text("P \(String(format: "%.0f", entry.protein))g").foregroundStyle(.blue)
+                    Text("·").foregroundStyle(.tertiary)
+                    Text("C \(String(format: "%.0f", entry.carbs))g").foregroundStyle(.cyan)
+                }
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            }
+            Spacer(minLength: 8)
+            if let g = grams {
+                HStack(spacing: 2) {
+                    Button {
+                        adjustGrams(entryID: entry.id, delta: -step)
+                    } label: {
+                        Image(systemName: "minus.circle.fill")
+                            .font(.title3)
+                            .foregroundStyle(.secondary)
+                    }
+                    .buttonStyle(.plain)
+
+                    Text("\(Int(g.rounded()))g")
+                        .font(.caption.weight(.semibold))
+                        .monospacedDigit()
+                        .frame(minWidth: 40)
+                        .multilineTextAlignment(.center)
+
+                    Button {
+                        adjustGrams(entryID: entry.id, delta: step)
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.title3)
+                            .foregroundStyle(.blue)
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+        }
+        .padding(.vertical, 2)
     }
 
     private func ingredientLabel(_ name: String) -> String {
@@ -499,10 +556,51 @@ struct SeparatelyLoggedMealEditView: View {
         return String(name[range.upperBound...])
     }
 
+    private func ingredientBaseName(_ label: String) -> String {
+        guard label.hasSuffix("g)"),
+              let parenIdx = label.lastIndex(of: "(") else { return label }
+        return String(label[label.startIndex..<parenIdx]).trimmingCharacters(in: .whitespaces)
+    }
+
+    private func stepSize(for grams: Double) -> Int {
+        switch Int(grams) {
+        case ..<20:   return 1
+        case 20..<100: return 5
+        default:      return 10
+        }
+    }
+
+    private func adjustGrams(entryID: UUID, delta: Int) {
+        guard let idx = entries.firstIndex(where: { $0.id == entryID }) else { return }
+        var entry = entries[idx]
+        guard let currentGrams = NutritionLogic.gramsFromEntryName(entry.name),
+              currentGrams > 0 else { return }
+        let newGrams = max(1.0, currentGrams + Double(delta))
+        let scale = newGrams / currentGrams
+
+        let oldTag = "(\(Int(currentGrams.rounded()))g)"
+        let newTag = "(\(Int(newGrams.rounded()))g)"
+        if entry.name.hasSuffix(oldTag) {
+            entry.name = String(entry.name.dropLast(oldTag.count)) + newTag
+        }
+        entry.calories = max(0, Int((Double(entry.calories) * scale).rounded()))
+        entry.protein = max(0, (entry.protein * scale * 10).rounded() / 10)
+        entry.carbs = max(0, (entry.carbs * scale * 10).rounded() / 10)
+        entry.fat = max(0, (entry.fat * scale * 10).rounded() / 10)
+        entry.fiber = max(0, (entry.fiber * scale * 10).rounded() / 10)
+        entry.sugar = max(0, (entry.sugar * scale * 10).rounded() / 10)
+        entry.saturatedFat = max(0, (entry.saturatedFat * scale * 10).rounded() / 10)
+        entry.sodium = max(0, (entry.sodium * scale).rounded())
+        entry.cholesterol = max(0, (entry.cholesterol * scale).rounded())
+
+        entries[idx] = entry
+        store.updateFoodEntry(entry)
+    }
+
     private func merge() {
-        let date = group.entries.first?.date ?? Date()
-        let meal = group.entries.first?.meal ?? .breakfast
-        group.entries.forEach { store.deleteFoodEntry(id: $0.id) }
+        let date = entries.first?.date ?? Date()
+        let meal = entries.first?.meal ?? .breakfast
+        entries.forEach { store.deleteFoodEntry(id: $0.id) }
         store.addFoodEntry(FoodEntry(
             name: group.name,
             calories: totalKcal,

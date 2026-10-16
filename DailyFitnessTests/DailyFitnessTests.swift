@@ -5256,3 +5256,86 @@ struct StoreLogMealCombinedTests {
         #expect(entry?.name.hasPrefix("Morning Shake") == true)
     }
 }
+
+// MARK: - Inline ingredient gram adjustment (SeparatelyLoggedMealEditView logic)
+
+@Suite("Inline ingredient gram adjustment")
+struct InlineIngredientGramAdjustmentTests {
+
+    // Simulates the adjustGrams logic from SeparatelyLoggedMealEditView.
+    private func applyGramDelta(to entry: FoodEntry, delta: Int) -> FoodEntry? {
+        guard let currentGrams = NutritionLogic.gramsFromEntryName(entry.name),
+              currentGrams > 0 else { return nil }
+        let newGrams = max(1.0, currentGrams + Double(delta))
+        let scale = newGrams / currentGrams
+
+        let oldTag = "(\(Int(currentGrams.rounded()))g)"
+        let newTag = "(\(Int(newGrams.rounded()))g)"
+        var updated = entry
+        if entry.name.hasSuffix(oldTag) {
+            updated.name = String(entry.name.dropLast(oldTag.count)) + newTag
+        }
+        updated.calories = max(0, Int((Double(entry.calories) * scale).rounded()))
+        updated.protein = max(0, (entry.protein * scale * 10).rounded() / 10)
+        updated.carbs = max(0, (entry.carbs * scale * 10).rounded() / 10)
+        updated.fat = max(0, (entry.fat * scale * 10).rounded() / 10)
+        return updated
+    }
+
+    // "Protein Shake · Whey Protein (30g)" — the format used by logIngredientsSeparately.
+    private func makeSeparateEntry(mealName: String, ingredient: String, grams: Int, kcal: Int, protein: Double, carbs: Double, fat: Double) -> FoodEntry {
+        FoodEntry(
+            name: "\(mealName) · \(ingredient) (\(grams)g)",
+            calories: kcal,
+            protein: protein,
+            carbs: carbs,
+            fat: fat,
+            date: Date(timeIntervalSince1970: 0)
+        )
+    }
+
+    @Test("gramsFromEntryName extracts grams from a full separately-logged name")
+    func gramsFromSeparatelyLoggedName() {
+        let entry = makeSeparateEntry(mealName: "Protein Shake", ingredient: "Whey Protein", grams: 30, kcal: 120, protein: 24, carbs: 3, fat: 2)
+        let grams = NutritionLogic.gramsFromEntryName(entry.name)
+        #expect(grams == 30.0)
+    }
+
+    @Test("increasing grams scales macros proportionally and updates name")
+    func increaseGramsScalesMacros() {
+        let entry = makeSeparateEntry(mealName: "Protein Shake", ingredient: "Whey Protein", grams: 30, kcal: 120, protein: 24, carbs: 3, fat: 2)
+        let updated = applyGramDelta(to: entry, delta: 5)
+
+        #expect(updated != nil)
+        // 35/30 ≈ 1.1667 → calories = 140, protein = 28.0
+        #expect(updated?.name == "Protein Shake · Whey Protein (35g)")
+        #expect(updated?.calories == 140)
+        #expect(updated?.protein == 28.0)
+    }
+
+    @Test("decreasing grams scales macros proportionally and updates name")
+    func decreaseGramsScalesMacros() {
+        let entry = makeSeparateEntry(mealName: "Protein Shake", ingredient: "Milk", grams: 250, kcal: 150, protein: 8, carbs: 12, fat: 5)
+        let updated = applyGramDelta(to: entry, delta: -10)
+
+        #expect(updated != nil)
+        // 240/250 = 0.96 → calories = 144
+        #expect(updated?.name == "Protein Shake · Milk (240g)")
+        #expect(updated?.calories == 144)
+    }
+
+    @Test("decrement cannot go below 1g")
+    func decrementClampedToOne() {
+        let entry = makeSeparateEntry(mealName: "Protein Shake", ingredient: "Creatine", grams: 5, kcal: 0, protein: 0, carbs: 0, fat: 0)
+        let updated = applyGramDelta(to: entry, delta: -10)
+
+        #expect(updated?.name == "Protein Shake · Creatine (1g)")
+    }
+
+    @Test("returns nil when name has no gram suffix")
+    func returnsNilWithoutGrams() {
+        var entry = FoodEntry(name: "Scrambled Eggs", calories: 200, protein: 14, carbs: 2, fat: 14, date: Date(timeIntervalSince1970: 0))
+        let result = applyGramDelta(to: entry, delta: 5)
+        #expect(result == nil)
+    }
+}

@@ -692,4 +692,18 @@ let foodDatabase: [FoodTemplate] = [
     FoodTemplate(name: "Blueprint Collagen Protein (1 scoop)",category: .supplements, kcal: 40, protein: 10,   carbs: 0,    fat: 0,    defaultServingG: 10),
     // Blueprint Blueberry Nut Mix — blueberry + mixed nuts blend, estimated per 100g
     FoodTemplate(name: "Blueprint Blueberry Nut Mix (100g)", category: .supplements, kcal: 430, protein: 10,   carbs: 35,   fat: 28,   fiber: 4.0, defaultServingG: 50),
+
+    // MARK: - Drinks (non-alcoholic)
+    // Values per 100ml; defaultServingG = typical serving in ml.
+    // Alcoholic drinks live in the bundled foods.db only.
+    FoodTemplate(name: "Water",                           category: .drinks, kcal: 0,   protein: 0,    carbs: 0,    fat: 0,    defaultServingG: 250, servingLabel: "1 glass"),
+    FoodTemplate(name: "Black coffee",                    category: .drinks, kcal: 2,   protein: 0.3,  carbs: 0,    fat: 0,    defaultServingG: 240, servingLabel: "1 cup"),
+    FoodTemplate(name: "Espresso (single)",               category: .drinks, kcal: 5,   protein: 0.3,  carbs: 0.5,  fat: 0.1,  defaultServingG: 30,  servingLabel: "1 shot"),
+    FoodTemplate(name: "Oat milk latte",                  category: .drinks, kcal: 60,  protein: 1.5,  carbs: 9,    fat: 2.5,  defaultServingG: 350, servingLabel: "1 medium"),
+    FoodTemplate(name: "Whole milk",                      category: .drinks, kcal: 61,  protein: 3.2,  carbs: 4.7,  fat: 3.3,  saturatedFat: 1.9,   defaultServingG: 250, servingLabel: "1 glass"),
+    FoodTemplate(name: "Skim milk",                       category: .drinks, kcal: 34,  protein: 3.4,  carbs: 4.9,  fat: 0.1,  defaultServingG: 250, servingLabel: "1 glass"),
+    FoodTemplate(name: "Orange juice (fresh)",            category: .drinks, kcal: 45,  protein: 0.7,  carbs: 10.4, fat: 0.2,  sugar: 8.4,          defaultServingG: 250, servingLabel: "1 glass"),
+    FoodTemplate(name: "Green tea",                       category: .drinks, kcal: 1,   protein: 0,    carbs: 0.2,  fat: 0,    defaultServingG: 240, servingLabel: "1 cup"),
+    FoodTemplate(name: "Coconut water",                   category: .drinks, kcal: 19,  protein: 0.7,  carbs: 3.7,  fat: 0.2,  sugar: 2.6,          sodium: 105, defaultServingG: 330, servingLabel: "1 can"),
+    FoodTemplate(name: "Protein shake (store-bought)",    category: .drinks, kcal: 150, protein: 30,   carbs: 6,    fat: 3,    defaultServingG: 330, servingLabel: "1 bottle"),
 ]
