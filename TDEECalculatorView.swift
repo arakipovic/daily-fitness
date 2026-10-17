@@ -42,6 +42,20 @@ enum LifestyleActivity: String, CaseIterable, Identifiable {
     }
 }
 
+enum GoalType: String, CaseIterable, Identifiable {
+    case lose     = "Lose Fat"
+    case maintain = "Maintain Weight"
+    case gain     = "Build Muscle"
+    var id: String { rawValue }
+    var description: String {
+        switch self {
+        case .lose:     return "Reduce body fat while preserving muscle"
+        case .maintain: return "Eat at maintenance — no weight change intended"
+        case .gain:     return "Add muscle with a controlled calorie surplus"
+        }
+    }
+}
+
 // MARK: - View
 
 struct TDEECalculatorView: View {
@@ -64,6 +78,9 @@ struct TDEECalculatorView: View {
     @State private var heightIn = ""    // imperial display
     @State private var age = ""
     @State private var sex: BiologicalSex = .male
+
+    // Goal
+    @State private var goalType: GoalType = .maintain
 
     // Activity
     @State private var lifestyle: LifestyleActivity = .sedentary
@@ -146,10 +163,18 @@ struct TDEECalculatorView: View {
         )
     }
 
-    /// Maintenance adjusted for the user's weight goal. Never below 1,200 kcal.
+    /// Calories adjusted for the user's chosen goal. Never below 1,200 kcal.
     private var goalAdjustedCalories: Int {
-        guard let rec = goalRecommendation else { return targetCalories }
-        return max(1200, targetCalories + rec.dailyCalorieAdjustment)
+        switch goalType {
+        case .maintain:
+            return targetCalories
+        case .lose:
+            if let rec = goalRecommendation { return max(1200, targetCalories + rec.dailyCalorieAdjustment) }
+            return max(1200, targetCalories - 500)
+        case .gain:
+            if let rec = goalRecommendation { return max(1200, targetCalories + rec.dailyCalorieAdjustment) }
+            return targetCalories + 300
+        }
     }
 
     private var proteinG: Double {
@@ -206,16 +231,37 @@ struct TDEECalculatorView: View {
                     }
                 }
 
+                Section {
+                    ForEach(GoalType.allCases) { g in
+                        HStack {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(g.rawValue).font(.subheadline)
+                                Text(g.description).font(.caption).foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            if goalType == g {
+                                Image(systemName: "checkmark").foregroundStyle(Color.accentColor)
+                            }
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture { goalType = g }
+                    }
+                } header: {
+                    Text("What's Your Goal?")
+                }
+
                 Section("Your Stats") {
                     LabeledContent("Weight (\(unit.weightLabel))") {
                         TextField(unit == .kg ? "75" : "165", text: $weightDisplay)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
                     }
-                    LabeledContent("Goal Weight (\(unit.weightLabel))") {
-                        TextField("optional", text: $targetWeightDisplay)
-                            .keyboardType(.decimalPad)
-                            .multilineTextAlignment(.trailing)
+                    if goalType != .maintain {
+                        LabeledContent("Goal Weight (\(unit.weightLabel))") {
+                            TextField("optional · for timeline", text: $targetWeightDisplay)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                        }
                     }
                     if unit == .kg {
                         LabeledContent("Height (cm)") {
@@ -302,33 +348,49 @@ struct TDEECalculatorView: View {
 
                 if isReady {
                     Section {
-                        if let resting = measuredRestingEnergy {
-                            ResultRow(label: "Measured resting energy",
-                                      value: "\(Int(resting.rounded())) kcal",
-                                      note: "7-day avg from Apple Watch · exercise added daily")
-                        } else {
-                            ResultRow(label: "Formula estimate",
-                                      value: "\(Int(tdee.rounded())) kcal",
-                                      note: "BMR \(Int(bmr.rounded())) × \(String(format: "%.2f", lifestyle.baseMultiplier)) lifestyle")
-                        }
-
+                        // All three estimates shown for comparison — checkmark indicates which is in use
                         if let maintenance = backCalculatedMaintenance {
-                            ResultRow(label: "Your actual maintenance",
+                            ResultRow(label: "Back-calculated",
                                       value: "\(Int(maintenance.rounded())) kcal",
-                                      note: "back-calculated from your weight trend + food log")
+                                      note: "food log + weight trend · includes all activity",
+                                      icon: "checkmark.circle.fill", iconColor: .green)
                         } else {
                             HStack(spacing: 8) {
                                 Image(systemName: "chart.line.uptrend.xyaxis")
                                     .foregroundStyle(.secondary)
-                                Text("Log food for 5+ days and sync weight to Apple Health for a personalised estimate.")
+                                Text("Log food for 5+ days and sync weight to Apple Health for a back-calculated estimate.")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
                         }
 
+                        if let resting = measuredRestingEnergy {
+                            ResultRow(label: "Apple Watch",
+                                      value: "\(Int(resting.rounded())) kcal",
+                                      note: "7-day avg resting energy",
+                                      icon: backCalculatedMaintenance == nil ? "checkmark.circle.fill" : nil,
+                                      iconColor: .green)
+                        } else {
+                            ResultRow(label: "Apple Watch",
+                                      value: "not paired",
+                                      note: "connect to measure resting energy directly")
+                        }
+
+                        ResultRow(label: "Formula",
+                                  value: "\(Int(tdee.rounded())) kcal",
+                                  note: "BMR \(Int(bmr.rounded())) × \(String(format: "%.2f", lifestyle.baseMultiplier)) \(lifestyle.rawValue.lowercased())",
+                                  icon: backCalculatedMaintenance == nil && measuredRestingEnergy == nil ? "checkmark.circle.fill" : nil,
+                                  iconColor: .green)
+
                         Divider()
 
-                        if let rec = goalRecommendation {
+                        if goalType == .maintain {
+                            ResultRow(label: "Daily Target",
+                                      value: "\(targetCalories) kcal",
+                                      note: backCalculatedMaintenance != nil ? "maintenance · using back-calculated"
+                                          : measuredRestingEnergy != nil ? "maintenance · using Apple Watch"
+                                          : "maintenance · using formula")
+                        } else if let rec = goalRecommendation {
                             let dirIcon = rec.direction == .lose ? "arrow.down.circle.fill" : "arrow.up.circle.fill"
                             let dirColor: Color = rec.direction == .lose ? .orange : .green
                             ResultRow(
@@ -349,14 +411,14 @@ struct TDEECalculatorView: View {
                                         .foregroundStyle(.secondary)
                                 }
                             }
-                            ResultRow(label: "Daily Target (with goal)",
+                            ResultRow(label: "Daily Target",
                                       value: "\(goalAdjustedCalories) kcal",
                                       note: "maintenance \(targetCalories) \(rec.direction == .lose ? "−" : "+")\(abs(rec.dailyCalorieAdjustment))")
                         } else {
-                            ResultRow(label: "Daily Target", value: "\(targetCalories) kcal",
-                                      note: backCalculatedMaintenance != nil ? "from your data"
-                                          : measuredRestingEnergy != nil ? "from Apple Watch · refine over time"
-                                          : "formula estimate — refine over time")
+                            let adj = goalType == .lose ? 500 : 300
+                            ResultRow(label: "Daily Target",
+                                      value: "\(goalAdjustedCalories) kcal",
+                                      note: "maintenance \(targetCalories) \(goalType == .lose ? "− \(adj) (standard deficit)" : "+ \(adj) (lean bulk)")")
                         }
 
                         ResultRow(label: "Protein",  value: "\(Int(proteinG))g",
@@ -368,7 +430,7 @@ struct TDEECalculatorView: View {
                     }
 
                     Section {
-                        Text("The formula is a starting point. Track for 1–2 weeks and your weight trend will back-calculate your real maintenance. Set a goal weight above to get a recommended deficit or surplus.")
+                        Text("All three estimates are shown so you can see how far apart the formula is from your real data. The formula is a rough starting point — after 1–2 weeks of tracking your weight trend will back-calculate your actual maintenance.")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -464,6 +526,9 @@ struct TDEECalculatorView: View {
                 }
                 if lb.profileTargetWeightKg > 0 {
                     targetWeightDisplay = String(format: "%.1f", unit.kgToDisplay(lb.profileTargetWeightKg))
+                    let currentKg = lb.profileWeightKg > 0 ? lb.profileWeightKg : (healthKit.recentWeightKg ?? 0)
+                    if lb.profileTargetWeightKg < currentKg { goalType = .lose }
+                    else if lb.profileTargetWeightKg > currentKg { goalType = .gain }
                 }
                 if lb.profileHeightCm > 0 {
                     if unit == .kg {

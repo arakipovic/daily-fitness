@@ -507,6 +507,13 @@ struct HealthView: View {
                 .padding(.vertical, 4)
             }
 
+            // --- Composition Breakdown ---
+            let bars = compBars
+            if bars.count >= 2 {
+                bodyCompositionTrendView(bars: bars)
+                    .padding(.vertical, 4)
+            }
+
             // --- Waist ---
             if let waist = hk.waistCircumferenceCm {
                 VStack(alignment: .leading, spacing: 8) {
@@ -582,6 +589,97 @@ struct HealthView: View {
             .background(color.opacity(0.1))
             .clipShape(RoundedRectangle(cornerRadius: 6))
         }
+    }
+
+    // MARK: Body Composition Breakdown
+
+    private struct CompBar: Identifiable {
+        let id = UUID()
+        let date: Date
+        let series: String
+        let kg: Double
+    }
+
+    private var compBars: [CompBar] {
+        let cal = Calendar.current
+        return hk.weeklyWeightKg.compactMap { dw -> [CompBar]? in
+            guard let df = hk.weeklyBodyFat.first(where: { cal.isDate($0.date, inSameDayAs: dw.date) }),
+                  df.value > 0, dw.weightKg > 0 else { return nil }
+            let fatKg  = dw.weightKg * (df.value / 100.0)
+            let leanKg = dw.weightKg - fatKg
+            return [
+                CompBar(date: dw.date, series: "Lean", kg: leanKg),
+                CompBar(date: dw.date, series: "Fat",  kg: fatKg)
+            ]
+        }.flatMap { $0 }.sorted { $0.date < $1.date }
+    }
+
+    @ViewBuilder
+    private func bodyCompositionTrendView(bars: [CompBar]) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            // Current estimated breakdown
+            if let kg = hk.recentWeightKg, let bf = hk.bodyFatPercentage, bf > 0 {
+                let fatKg    = kg * (bf / 100)
+                let leanKg   = kg - fatKg
+                let muscleKg = leanKg * 0.50   // skeletal muscle ≈ 50% of lean
+                let waterKg  = leanKg * 0.73   // Watson formula
+                let boneKg   = leanKg * 0.065  // bone mineral ≈ 6.5% of lean
+
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        compositionPill("Fat",     value: fatKg,    color: .orange)
+                        compositionPill("Muscle~", value: muscleKg, color: .blue)
+                        compositionPill("Water~",  value: waterKg,  color: .teal)
+                        compositionPill("Bone~",   value: boneKg,   color: .gray)
+                    }
+                }
+            }
+
+            // Fat vs Lean stacked trend
+            Chart(bars) { bar in
+                BarMark(
+                    x: .value("Date", bar.date, unit: .day),
+                    y: .value("kg", bar.kg)
+                )
+                .foregroundStyle(by: .value("", bar.series))
+                .cornerRadius(2)
+            }
+            .chartForegroundStyleScale([
+                "Lean": Color.blue.opacity(0.7),
+                "Fat":  Color.orange.opacity(0.8)
+            ])
+            .chartXAxis {
+                AxisMarks(values: .stride(by: .day)) { _ in
+                    AxisValueLabel(format: .dateTime.weekday(.abbreviated), centered: true)
+                }
+            }
+            .chartYAxis { AxisMarks(position: .leading) }
+            .frame(height: 140)
+
+            HStack(spacing: 12) {
+                Label("Lean", systemImage: "square.fill").foregroundStyle(Color.blue.opacity(0.8))
+                Label("Fat",  systemImage: "square.fill").foregroundStyle(Color.orange.opacity(0.8))
+                Spacer()
+            }
+            .font(.caption2)
+            .foregroundStyle(.secondary)
+
+            Text("~ sub-components estimated from body fat %. Garmin's detailed muscle/bone/water breakdown stays in Garmin Connect and isn't written to Apple Health.")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+        }
+    }
+
+    private func compositionPill(_ label: String, value: Double, color: Color) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(label).font(.caption2).foregroundStyle(.secondary)
+            Text(String(format: "%.1f kg", value))
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(color)
+        }
+        .padding(.horizontal, 10).padding(.vertical, 6)
+        .background(color.opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 
     private func measurementChart(data: [HealthKitManager.DayMeasurement], color: Color, unit: String, padding: Double) -> some View {

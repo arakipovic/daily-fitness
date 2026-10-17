@@ -435,35 +435,148 @@ private struct NutritionDetailView: View {
     let proteinTarget: Double
     let fiberTarget: Double
 
+    @Environment(Store.self) private var store
+    @Environment(HealthKitManager.self) private var healthKit
+
     private var summary: NutritionSummary {
         AnalyticsLogic.nutritionSummary(from: foodLog, days: 28)
     }
     private var daily: [DailyNutrition] {
         AnalyticsLogic.dailyNutrition(from: foodLog, days: 28)
     }
+    private var backCalculatedMaintenance: Double? {
+        let pairs = healthKit.weeklyWeightKg.map { (date: $0.date, kg: $0.weightKg) }
+        guard let trend = NutritionLogic.weightTrendPerWeek(from: pairs) else { return nil }
+        let s = AnalyticsLogic.nutritionSummary(from: foodLog, days: 14)
+        guard s.loggedDays >= 5 else { return nil }
+        let m = NutritionLogic.estimatedMaintenance(avgDailyKcal: s.avgCalories, weightChangePer7Days: trend)
+        guard m > 1000, m < 5000 else { return nil }
+        return m
+    }
+    private var watchMaintenance: Double? { healthKit.avgRestingEnergyKcal }
+    private var formulaMaintenance: Double? {
+        let lb = store.logbook
+        let weightKg = lb.profileWeightKg > 0 ? lb.profileWeightKg : (healthKit.recentWeightKg ?? 0)
+        guard weightKg > 0, lb.profileHeightCm > 0, lb.profileAge > 0 else { return nil }
+        let base = 10 * weightKg + 6.25 * lb.profileHeightCm - 5 * Double(lb.profileAge)
+        let bmr = lb.profileSex == .male ? base + 5 : base - 161
+        let multiplier: Double = switch lb.profileActivity { case .sedentary: 1.20; case .light: 1.27; default: 1.35 }
+        return bmr * multiplier
+    }
+    // Best available maintenance estimate in priority order
+    private var maintenanceEstimate: Int? {
+        (backCalculatedMaintenance ?? watchMaintenance ?? formulaMaintenance).map { Int($0.rounded()) }
+    }
+    private var summary14: NutritionSummary {
+        AnalyticsLogic.nutritionSummary(from: foodLog, days: 14)
+    }
+    private var maintenanceSource: String {
+        if backCalculatedMaintenance != nil { return "back-calculated from your actual data" }
+        if watchMaintenance != nil { return "Apple Watch resting energy" }
+        return "Mifflin-St Jeor formula"
+    }
+    private var avgIntake14: Int { Int(summary14.avgCalories.rounded()) }
+    private var avgDeficit: Int? {
+        guard let m = maintenanceEstimate, summary14.loggedDays >= 1 else { return nil }
+        return m - avgIntake14
+    }
+    private var projectedWeeklyKg: Double? {
+        guard let d = avgDeficit else { return nil }
+        return Double(d) * 7.0 / 7700.0
+    }
+    // Resting-only baseline: Watch basal energy, or pure BMR (no activity multiplier).
+    // Used to split maintenance into "what you burn existing" vs "what workouts add".
+    private var restingBaseline: Int? {
+        if let w = watchMaintenance { return Int(w.rounded()) }
+        let lb = store.logbook
+        let weightKg = lb.profileWeightKg > 0 ? lb.profileWeightKg : (healthKit.recentWeightKg ?? 0)
+        guard weightKg > 0, lb.profileHeightCm > 0, lb.profileAge > 0 else { return nil }
+        let base = 10 * weightKg + 6.25 * lb.profileHeightCm - 5 * Double(lb.profileAge)
+        let bmr = lb.profileSex == .male ? base + 5 : base - 161
+        return Int(bmr.rounded())
+    }
 
     var body: some View {
         List {
-            Section("Calories (28 days)") {
+            if let d = avgDeficit, let m = maintenanceEstimate {
+                Section {
+                    VStack(alignment: .leading, spacing: 16) {
+                        HStack(alignment: .top) {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Maintenance")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                                Text(m.formatted(.number))
+                                    .font(.title.weight(.bold))
+                                Text("kcal / day (avg, inc. activity)")
+                                    .font(.caption2)
+                                    .foregroundStyle(.secondary)
+                                if let r = restingBaseline, m > r {
+                                    let actAvg = m - r
+                                    Text("\(r.formatted(.number)) resting + \(actAvg.formatted(.number)) activity")
+                                        .font(.caption2)
+                                        .foregroundStyle(.orange.opacity(0.85))
+                                }
+                            }
+                            Spacer()
+                            VStack(alignment: .trailing, spacing: 4) {
+                                Text("Avg intake · 14 days")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                                Text(avgIntake14.formatted(.number))
+                                    .font(.title.weight(.bold))
+                                Text("kcal / day")
+                                    .font(.caption2)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        Divider()
+                        VStack(alignment: .leading, spacing: 4) {
+                            let deficitType = d >= 0 ? "deficit" : "surplus"
+                            let deficitSign = d >= 0 ? "-" : "+"
+                            Text("\(deficitSign)\(abs(d).formatted(.number)) kcal/day avg \(deficitType)")
+                                .font(.headline)
+                                .foregroundStyle(d >= 0 ? .green : .red)
+                            if let wk = projectedWeeklyKg {
+                                Text(String(format: "≈ %.2f kg per week at this rate", abs(wk)))
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                    .padding(.vertical, 4)
+                } header: {
+                    Text("Your Balance")
+                } footer: {
+                    Text("Maintenance is \(maintenanceSource). The activity portion is averaged over 14 days — a single heavy workout inflates it. On rest days, aim closer to the resting number; on hard training days you can eat more. Based on \(summary14.loggedDays) days logged.")
+                }
+            }
+            Section {
                 Chart {
                     ForEach(daily) { day in
                         BarMark(
                             x: .value("Day", day.date, unit: .day),
                             y: .value("kcal", day.calories)
                         )
-                        .foregroundStyle(day.calories > calorieTarget ? Color.red.opacity(0.7).gradient
-                                         : day.calories > 0 ? Color.orange.gradient
-                                         : Color.gray.opacity(0.2).gradient)
+                        .foregroundStyle(
+                            day.calories == 0 ? Color.gray.opacity(0.2).gradient
+                            : (maintenanceEstimate.map { day.calories > $0 } ?? false) ? Color.red.opacity(0.7).gradient
+                            : day.calories > calorieTarget ? Color.yellow.opacity(0.85).gradient
+                            : Color.orange.gradient
+                        )
                         .cornerRadius(2)
                     }
                     if calorieTarget > 0 {
-                        RuleMark(y: .value("Target", calorieTarget))
+                        RuleMark(y: .value("Goal", calorieTarget))
                             .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [4]))
                             .foregroundStyle(.secondary)
                             .annotation(position: .top, alignment: .trailing) {
-                                Text("target").font(.caption2).foregroundStyle(.secondary)
+                                Text("Daily goal · \(calorieTarget) kcal")
+                                    .font(.caption2)
+                                    .foregroundStyle(.secondary)
                             }
                     }
+
                 }
                 .chartXAxis {
                     AxisMarks(values: .stride(by: .weekOfYear)) { _ in
@@ -472,6 +585,24 @@ private struct NutritionDetailView: View {
                 }
                 .chartYAxis { AxisMarks(position: .leading) }
                 .frame(height: 160)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(spacing: 12) {
+                        Label("On track", systemImage: "square.fill").foregroundStyle(.orange)
+                        if maintenanceEstimate != nil {
+                            Label("Still losing", systemImage: "square.fill").foregroundStyle(Color.yellow.opacity(0.9))
+                        }
+                        Label("At surplus", systemImage: "square.fill").foregroundStyle(Color.red.opacity(0.7))
+                        Spacer()
+                    }
+                    if let m = maintenanceEstimate {
+                        Text("Est. maintenance: \(m) kcal · yellow = above goal but below maintenance")
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+                .padding(.top, 2)
 
                 let calDiff = Int(summary.avgCalories.rounded()) - calorieTarget
                 AnalyticsMetricRow(
@@ -491,6 +622,10 @@ private struct NutritionDetailView: View {
                     value: "\(Int(summary.avgFiber.rounded()))g/day",
                     detail: "target \(Int(fiberTarget))g · \(fiberDiff >= 0 ? "+" : "")\(fiberDiff)g"
                 )
+            } header: {
+                Text("Calories (28 days)")
+            } footer: {
+                Text("**Daily goal** is the calorie target from Settings → Nutrition Calculator. Three methods are tried in order:\n\n1. **Back-calculated (most accurate)** — needs 5+ days of food logged and weight entries in Apple Health. Formula: maintenance = avg daily intake − (weight change per week × 7,700 ÷ 7). Because it's derived from what you actually ate and what the scale did, activity calories are already included — no separate exercise adjustment needed. Example: eating 1,800 kcal/day while losing 0.5 kg/week → maintenance ≈ 2,350 kcal (0.5 kg × 7,700 ÷ 7 ≈ 550 kcal/day deficit). If you logged weight more than once in a day, the lowest reading is used.\n\n2. **Apple Watch** — 7-day average measured resting energy, if paired.\n\n3. **Formula fallback** — Mifflin-St Jeor BMR (10 × kg + 6.25 × cm − 5 × age ± 5) × lifestyle activity multiplier.")
             }
         }
         .navigationTitle("Nutrition")

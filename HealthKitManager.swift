@@ -417,7 +417,9 @@ final class HealthKitManager {
                 guard let samples = samples as? [HKQuantitySample] else { cont.resume(returning: []); return }
                 var byDay: [Date: Double] = [:]
                 for s in samples {
-                    byDay[calendar.startOfDay(for: s.startDate)] = s.quantity.doubleValue(for: .gramUnit(with: .kilo))
+                    let day = calendar.startOfDay(for: s.startDate)
+                    let kg = s.quantity.doubleValue(for: .gramUnit(with: .kilo))
+                    byDay[day] = byDay[day].map { min($0, kg) } ?? kg
                 }
                 cont.resume(returning: byDay.map { DayWeight(date: $0.key, weightKg: $0.value) }.sorted { $0.date < $1.date })
             }
